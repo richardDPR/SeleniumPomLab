@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'com.saucedemo'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+dependencies {
+    // Selenium
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+
+    // Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.15.0'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
+
+    // JUnit 5 (requerido por cucumber-junit-platform-engine)
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.2'
+
+    // Allure + Cucumber integration
+    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.25.0'
+}
+
+allure {
+    adapter {
+        autoconfigure = true
+        aspectjWeaver = false
+    }
+    report {
+        version = '2.25.0'
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    systemProperty 'cucumber.junit-platform.naming-strategy', 'long'
+    // Genera resultados Allure en build/allure-results
+    systemProperty 'allure.results.directory', "${buildDir}/allure-results"
+}

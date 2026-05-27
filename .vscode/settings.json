@@ -1,0 +1,11 @@
+{
+  "cucumberautocomplete.steps": [
+    "src/test/java/com/saucedemo/steps/*.java"
+  ],
+  "cucumberautocomplete.syncfeatures": "src/test/resources/features/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": false,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.test.config": {
+    "workingDirectory": "${workspaceFolder}"
+  }
+}
