@@ -21,13 +21,14 @@ public class DriverFactory {
             options.addArguments("--start-maximized");
             driver = new ChromeDriver(options);*/
             //---->para Chrome
-            /*//---->para Firefox
+
+            /*//---->para Firefox Developer Edition
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.setBinary("C:\\Program Files\\Firefox Developer Edition\\firefox.exe");
             options.addArguments("--start-maximized");
             driver = new FirefoxDriver(options);*/
-            //---->para Firefox
+            //---->para Firefox Developer Edition
 
             //---->para Edge
             System.setProperty("webdriver.edge.driver", "drivers/msedgedriver.exe");
