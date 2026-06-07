@@ -9,6 +9,9 @@ version = '1.0-SNAPSHOT'
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 sourceSets {
@@ -60,6 +63,8 @@ test {
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
+        //exceptionFormat "full"
+        //showStandardStreams = true
     }
     systemProperty 'cucumber.junit-platform.naming-strategy', 'long'
     // Genera resultados Allure en build/allure-results

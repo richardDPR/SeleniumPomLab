@@ -1,5 +1,7 @@
-package com.saucedemo.utils;
-
+//package com.saucedemo.utils;
+package com.demoblaze.utils;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,8 +35,17 @@ public class DriverFactory {
             //---->para Edge
             System.setProperty("webdriver.edge.driver", "drivers/msedgedriver.exe");
             EdgeOptions options = new EdgeOptions();
-            options.addArguments("--start-maximized");
+            //options.addArguments("--start-maximized");
+            options.addArguments("--window-size=800,600");
             driver = new EdgeDriver(options);
+            // Configuración para Edge en modo headless
+            //System.setProperty("webdriver.edge.driver", "drivers/msedgedriver.exe");
+            //WebDriverManager.edgedriver().setup();
+            //EdgeOptions options = new EdgeOptions();
+            //options.addArguments("--headless");       // modo headless
+            //options.addArguments("--disable-gpu");    // evita problemas gráficos
+            //options.addArguments("--window-size=1920,1080"); // tamaño de pantalla virtual
+            //driver = new EdgeDriver(options);
             //---->para Edge
         }
         return driver;

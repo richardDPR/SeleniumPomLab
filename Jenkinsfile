@@ -1,12 +1,13 @@
 pipeline {
-    agent { label 'windows' }
+    agent { label 'windows-agent' }
 
     stages {
-        stage('Checkout') {
+        stage('Check Java') {
             steps {
-                // Si tu Jenkins está conectado a Git, puedes hacer checkout aquí
-                // checkout scm
-                echo 'Código fuente preparado'
+                bat '''
+                set JAVA_HOME=C:\\Program Files\\Java\\jdk-21
+                java -version
+                '''
             }
         }
 
@@ -30,7 +31,7 @@ pipeline {
             steps {
                 dir('D:\\Development\\cursoQA\\SeleniumPomLab') {
                     allure([
-                        commandline: 'Allure_2.42.0',   // mismo binario que usaste en Cypress
+                        commandline: 'Allure_2.42.0',
                         includeProperties: false,
                         jdk: '',
                         resultPolicy: 'LEAVE_AS_IS',
@@ -38,12 +39,6 @@ pipeline {
                     ])
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline finalizado. Logs y reportes disponibles.'
         }
     }
 }

@@ -1,3 +1,4 @@
+@saucedemo
 Feature: Agregar articulo al carrito
   Como cliente de Sauce Demo
   Quiero agregar un articulo al carrito

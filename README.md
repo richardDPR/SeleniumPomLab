@@ -176,6 +176,7 @@ Esto abre automáticamente el reporte en el navegador con:
 ### Generar reporte HTML estático (sin abrir navegador):
 ```cmd
 gradlew.bat allureReport
+.\gradlew.bat allureReport  
 ```
 
 El reporte queda en:
