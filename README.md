@@ -131,7 +131,7 @@ Abre una terminal en la carpeta `SeleniumPomLab/` y ejecuta:
 ```cmd
 gradlew.bat test
 .\gradlew.bat test
-
+./gradlew test --tests "com.demoblaze.runner.CucumberTestRunnerDemoblaze"
 ```
 
 **Linux / macOS:**
