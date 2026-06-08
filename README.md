@@ -242,6 +242,62 @@ Instala las siguientes extensiones desde el Marketplace de VS Code (`Ctrl+Shift+
 
 > ⚠️ Abre directamente la carpeta `SeleniumPomLab/` que contiene el `build.gradle`
 
+---
+
+## 9. CI/CD con Jenkins (Windows 11)
+
+### 9.1 Instalación Rápida
+
+**Windows 11:**
+```powershell
+# Ejecutar PowerShell como Administrador
+cd D:\Development\cursoQA\SeleniumPomLab
+.\setup_jenkins.ps1 -All
+```
+
+O manualmente:
+1. Descargar: https://www.jenkins.io/download/
+2. Instalar: `jenkins-latest.msi`
+3. Acceder: `http://localhost:8080`
+4. Usar contraseña inicial de: `C:\Program Files\Jenkins\secrets\initialAdminPassword`
+
+### 9.2 Configurar Jenkins
+
+1. **Instalar Plugins:**
+   - Manage Jenkins → Manage Plugins
+   - Buscar e instalar: `Allure Plugin`, `Timestamper Plugin`
+
+2. **Configurar Java:**
+   - Manage Jenkins → Global Tool Configuration
+   - JDK Installation → Name: `JDK-21`
+   - JAVA_HOME: `C:\Program Files\Java\jdk-21`
+
+3. **Crear Job Pipeline:**
+   - New Item → Pipeline
+   - Name: `SeleniumPomLab-Tests`
+   - Pipeline: Selecciona `Pipeline script from SCM`
+   - SCM: Git → Repository: `https://github.com/tuuser/SeleniumPomLab.git`
+   - Script Path: `Jenkinsfile`
+
+### 9.3 Configurar Ejecución Programada
+
+En el Job:
+- **Build Triggers:** Poll SCM
+- **Schedule:** `H 8 * * *` (diario a las 8 AM)
+
+O crear Tarea Programada de Windows:
+```powershell
+.\setup_jenkins.ps1 -CreateTask
+```
+
+### 9.4 Ver Reportes
+
+- Allure Report: `http://localhost:8080/job/SeleniumPomLab-Tests/allure/`
+- Test Results: `http://localhost:8080/job/SeleniumPomLab-Tests/testReport/`
+- Build Artifacts: `http://localhost:8080/job/SeleniumPomLab-Tests/lastBuild/artifact/`
+
+Para más información, consulta `JENKINS_SETUP.md`
+
 ### 8.3 Configurar el reconocimiento del .feature
 
 El archivo `.vscode/settings.json` ya está incluido en el proyecto con la configuración lista:
